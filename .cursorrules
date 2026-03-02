@@ -1,0 +1,8 @@
+# Amethyst Launcher - Cursor Rules
+- **Framework:** .NET 8 WPF (Windows-only).
+- **Language:** C# 12+. Use modern language features (primary constructors, collection expressions, file-scoped namespaces, global usings).
+- **Architecture:** Strict MVVM. No code-behind logic in `.xaml.cs` files aside from `InitializeComponent()`. 
+- **Dependencies:** We will heavily utilize `CommunityToolkit.Mvvm` and `Microsoft.Extensions.DependencyInjection`.
+- **Async/Await:** Ensure asynchronous programming is used for all I/O operations (networking, file system, databases). Use `ConfigureAwait(false)` in library or service layers where appropriate.
+- **Code Quality (Anti-AI Slop):** Do NOT generate redundant comments (e.g., `// Initialize variable`). Write self-documenting code. Keep methods small and strictly focused on a single responsibility.
+- **File Structure:** Maintain strict separation of concerns into folders: `Models`, `ViewModels`, `Views`, `Services`, and `Core`.

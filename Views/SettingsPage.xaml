@@ -1,0 +1,33 @@
+<Page x:Class="AmethystLauncher.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:viewmodels="clr-namespace:AmethystLauncher.ViewModels"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance viewmodels:SettingsViewModel, IsDesignTimeCreatable=False}">
+    <Grid Margin="24">
+        <StackPanel>
+            <TextBlock Text="Launcher Settings"
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,16" />
+            <TextBlock Text="Instances Directory" FontWeight="Medium" />
+            <ui:TextBox Text="{Binding InstancesDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        PlaceholderText="C:\Games\AmethystInstances"
+                        Margin="0,4,0,0" />
+            <TextBlock Text="CurseForge API Key (Optional - Proxy Used by Default)"
+                       FontWeight="Medium"
+                       Margin="0,12,0,0" />
+            <ui:TextBox Text="{Binding CurseForgeApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        PlaceholderText="Enter private API key..."
+                        Margin="0,4,0,0" />
+            <ui:Button Content="Save Settings"
+                       Command="{Binding SaveSettingsCommand}"
+                       Appearance="Primary"
+                       Margin="0,24,0,0"
+                       HorizontalAlignment="Left" />
+        </StackPanel>
+    </Grid>
+</Page>

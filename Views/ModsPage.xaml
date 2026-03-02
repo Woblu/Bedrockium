@@ -1,0 +1,47 @@
+<Page x:Class="AmethystLauncher.Views.ModsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:viewmodels="clr-namespace:AmethystLauncher.ViewModels"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance viewmodels:ModsViewModel, IsDesignTimeCreatable=False}">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Trending Bedrock Add-ons" FontSize="28" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+        <ui:ProgressRing Grid.Row="1" IsIndeterminate="True"
+                         Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Width="64" Height="64"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding TrendingMods}"
+                  Visibility="{Binding IsLoading, Converter={StaticResource InverseBooleanToVisibilityConverter}, FallbackValue=Visible}"
+                  HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ui:Card Margin="0,0,0,12" Padding="16" HorizontalAlignment="Stretch">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Medium" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Summary}" FontSize="14" Foreground="Gray" TextWrapping="Wrap" Margin="0,4,0,0" />
+                            </StackPanel>
+                            <ui:Button Grid.Column="1" Content="Install" Appearance="Primary" VerticalAlignment="Center"
+                                       Command="{Binding DataContext.InstallModCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                       CommandParameter="{Binding}" />
+                        </Grid>
+                    </ui:Card>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
