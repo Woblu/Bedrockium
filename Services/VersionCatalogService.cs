@@ -6,7 +6,7 @@ namespace AmethystLauncher.Services;
 
 public class VersionCatalogService(HttpClient httpClient) : IVersionCatalogService
 {
-    private const string CatalogUrl = "https://raw.githubusercontent.com/placeholder/versions.json";
+    private const string CatalogUrl = "https://raw.githubusercontent.com/Woblu/Bedrockium/refs/heads/main/versions.json";
 
     public async Task<IEnumerable<VersionEntry>> GetAvailableVersionsAsync(CancellationToken cancellationToken = default)
     {
